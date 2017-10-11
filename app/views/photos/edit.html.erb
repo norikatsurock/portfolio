@@ -1,0 +1,20 @@
+<h1>写真追加のページ</h1>
+
+	<h4>アルバム名</h4>
+	<%= @albums.title %>
+	<br>
+	<br>
+	<%= form_for (@photo) do |f| %>
+		<h4>写真の選択</h4>
+		<%= f.attachment_field :image%>
+		<%= f.submit "投稿" %>
+	<br>
+	<br>
+	<h4>登録済みの写真</h4>
+		<%= attachment_image_tag (@photo, :image, :fill, 100, 100, format: "JPG") %>
+		<%= f.check_box :remove_image %>
+		<%= f.label :削除 %>
+	<% end %>
+
+<p><%= link_to "Topページへ", blogs_path %></p>
+<p><%= link_to "adminページへ", admin_path %></p>

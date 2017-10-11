@@ -1,0 +1,440 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+i{
+	color: grey;
+}
+.fa-grey{
+	color: black;
+}
+.fa-white{
+	color: white;
+}
+
+/*clearfixを追加*/
+.clearfix::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.admin_page a{
+	color: grey;
+}
+
+header {
+	width: 100%;
+	background-color: white;
+	text-align: center;
+	padding: 10px;
+	position: relative;
+}
+
+.header-link {
+	position: absolute;
+	top: 22px;
+	right: 22px;
+}
+.header-link i{
+	display: inline-block;
+	margin-right: 15px;
+}
+
+header a{
+	color: grey;
+}
+
+
+.header-headline{
+	font-size: 40px;
+}
+
+
+.nav-list{
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	background-color: grey;
+	padding: 20px 0;
+}
+
+.nav-list-item{
+	display: inline-block;
+	color: white;
+	padding: 0 30px;
+	font-size: 20px;
+}
+
+
+main{
+	background-attachment: fixed;
+	background-image: url(main.JPG);
+	background-size: cover;
+}
+.main-contair{
+	padding: 30px 0 50px 0;
+	width: 1200px;
+/*    background-color: rgba(0,0,0,0.7);*/
+	margin: 0 auto;
+}
+
+.blog-contair{
+	width: 830px;
+	background-color: rgba(0,0,0,0.4);
+	float: left;
+	padding: 0 auto;
+}
+.blog-headline{
+	text-align: center;
+	border-bottom: 5px double #f7f7f7;
+	line-height: 1.2;
+	color: white;
+	font-size: 32px;
+}
+
+.blog-box{
+	background-color: rgba(255,255,255,0.7);
+	width: 250px;
+	float: left;
+	border: 1px solid black;
+	height: 370px;
+}
+
+.blog-box:nth-child(2){
+	margin: 20px;
+}
+.blog-box:nth-child(3){
+	margin: 20px 20px 20px 0;
+}
+.blog-box:nth-child(4){
+	margin: 20px 20px 20px 0;
+}
+
+.blog-box:nth-child(5){
+	margin: 0 20px 20px 20px;
+}
+.blog-box:nth-child(6){
+	margin: 0 20px 20px 0;
+}
+.blog-box:nth-child(7){
+	margin: 0 20px 20px 0;
+}
+.blog-box-title{
+	width: 100%;
+	display: block;
+	padding-left: 20px;
+	font-size: 14px;
+	font-weight: bold;
+
+}
+.blog-box-title a{
+	color: grey;
+}
+
+.blog-box-category{
+	font-size:11px;
+	margin: 0 0 10px 20px;
+	padding: 2px;
+	border-radius: 5px;
+	background-color: grey;
+	display: inline-block;
+
+}
+.blog-box-body{
+	width: 85%;
+	height: 60px;
+	padding: 5px 0;
+	font-size: 12px;
+	overflow: scroll;
+	margin: 0 auto;
+	border-top: 2px solid grey;
+}
+.blog-box-body p{
+	color: grey;
+}
+
+
+.blog-box-date{
+	width: 100%;
+	display: block;
+	font-size: 13px;
+	padding-left: 20px;
+	color: grey;
+}
+
+.blog-box-img{
+    width: 200px;
+    height: 230px;
+	margin: 0 auto;
+}
+
+.paginate{
+	width: 100%;
+	padding-bottom: 20px;
+	text-align: center;
+	float: left;
+}
+
+
+.blog-item-box{
+	width: 70%;
+	float: left;
+	background-color: rgba(255,255,255,0.4);
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.blog-item-headline{
+	text-align: center;
+	border-bottom: 5px double #f7f7f7;
+	line-height: 1.2;
+}
+
+.blog-item-title{
+	padding-top: 10px;
+	text-align: center;
+	font-size: 32px;
+}
+.blog-item-text{
+	padding: 10px 0;
+	text-align: center;
+}
+
+
+.blog-item-date{
+	display: inline-block;
+	padding: 5px 10px;
+}
+
+
+.blog-item-category{
+	border-radius: 5px;
+	display: inline-block;
+	padding: 3px;
+	font-size: 15px;
+	background-color: grey;
+}
+
+.blog-item-img{
+/*	height: 500px;*/
+	text-align: center;
+
+}
+.blog-item-body{
+	font-size: 23px;
+}
+
+.comment{
+	width: 70%;
+	border-top: grey 3px solid;
+	margin-top: 30px;
+	padding-top: 20px;
+	background-color: rgba(255,255,255,0.3);
+	float: left;
+}
+
+.comment-form{
+	color: white;
+	text-align: left;
+}
+
+.comment-headline{
+	font-size: 20px;
+	text-align: left;
+}
+
+.comment-text{
+	border-top: 2px solid #f7f7f7;
+	padding: 5px;
+	text-align: left;
+}
+
+
+.sidebar{
+	width: 260px;
+	background-color: transparent;
+	float: right;
+	margin-right:37px;
+}
+.slidebar-blank{
+	height: 30px;
+}
+
+.news, .category, .favorite, .latest{
+	background-color: rgba(0,0,0,0.4);
+}
+
+
+.news-headline, .category-headline, .favorite-headline, .latest-headline{
+	padding-top: 5px;
+	text-align: center;
+	border-bottom: 5px double #f7f7f7;
+	line-height: 1.4;
+	color: white;
+}
+
+.news-content, .category-content, .favorite-content, .latest-content{
+	padding: 10px 0 50px;
+}
+
+.news-content-text, .category-content-text, .favorite-content-text, .latest-content-text{
+	border-bottom: 1px solid white;
+	padding: 5px 0 5px 10px;
+	color: white;
+}
+
+.album-contair{
+	width: 1200px;
+	background-color: rgba(0,0,0,0.4);
+	margin: 0 auto;
+	text-align: center;
+}
+.album-headline{
+	text-align: center;
+	border-bottom: 5px double #f7f7f7;
+	line-height: 1.2;
+	color: white;
+	font-size: 32px;
+}
+
+.album-box{
+	background-color: rgba(255,255,255,0.7);
+	width: 275px;
+	float: left;
+	border: 1px solid black;
+}
+
+.album-box-title{
+	width: 100%;
+	display: block;
+	padding: 5px 0;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+.album-box-title a{
+	color: grey;
+}
+
+.album-box-date,.album-box-place{
+	text-align: center;
+	display: inline-block;
+	color: grey;
+}
+.album-box-img{
+	padding-top: 20px;
+    height: 230px;
+	margin: 0 auto;
+}
+
+.album-box:nth-child(2){
+	margin: 20px;
+}
+.album-box:nth-child(3){
+	margin: 20px 20px 20px 0;
+}
+.album-box:nth-child(4){
+	margin: 20px 20px 20px 0;
+}
+
+.album-box:nth-child(5){
+	margin: 20px 20px 20px 0;
+}
+.album-box:nth-child(6){
+	margin: 0 20px 20px 20px;
+}
+.album-box:nth-child(7){
+	margin: 0 20px 20px 0;
+}
+.album-box:nth-child(8){
+	margin: 0 20px 20px 0;
+}
+.album-box:nth-child(9){
+	margin: 0 20px 20px 0;
+}
+
+.photo-title{
+	
+}
+
+.photo-date, .photo-place{
+	font-size: 20px;
+	display: inline-block;
+	padding-left: 15px;
+}
+
+.photo-box{
+	background-color: rgba(255,255,255,0.7);
+	width: 380px;
+	height: 290px;
+	float: left;
+	text-align: center;
+	margin: 10px;
+	padding: 10px 0;
+}
+
+
+footer{
+	width: 100%;
+	background-color: grey;
+	text-align: center;
+	padding: 35px 0;
+}
+
+.footer-text{
+	color: white;
+}
+
+
+.admin_blog{
+    width: 572px;
+    padding: 15px 30px;
+    border-top: 1px solid grey;
+}
+.admin_blog_box{
+    width: 300px;
+    float: left;
+}
+#admin_blog_headline a{
+	color: grey;
+}
+
+.admin_blog_title, .admin_blog_category, .admin_blog_img, .admin_blog_date{
+    margin: 0 auto;
+}
+.admin_blog_link{
+    right: 20px;
+    text-decoration: underline;
+    padding: 30px;
+    float:left;
+}
+
+.admin_blog_link a{
+	color: grey;
+}
+

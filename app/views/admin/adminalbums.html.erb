@@ -1,0 +1,18 @@
+<section id="admin_blog_headline">
+	<h1>アルバム一覧</h1>
+	<p><%= link_to "→アルバムの新規追加←", new_album_path %></p>
+	<p><%= link_to "→管理者ページへ戻る←", admin_path %></p>
+</section>
+
+<% @albums.each do |album| %>
+	<div class="admin_blog clearfix">
+		<div class="admin_blog_box">
+			<p class="admin_blog_title">タイトル｜<%= album.title %></p>
+			<p class="admin_blog_date">撮影日時｜<%= album.date %></p>
+			<p class="admin_blog_date">撮影場所｜<%= album.place %></p>
+		</div>
+			<div class="admin_blog_link">
+				<%= link_to "アルバムの編集", edit_album_path(album)%><br>
+				<%= link_to "アルバムの削除", album_path(album), method: :delete, "data-confirm" => "本当に削除しますか？"%></div>
+	</div>
+<% end %>

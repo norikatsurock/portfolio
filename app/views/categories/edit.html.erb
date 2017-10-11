@@ -1,0 +1,21 @@
+<h1>カテゴリ編集</h1>
+<%= form_for(@category) do |f| %>
+	<h3>既存のカテゴリ名：<%= @category.name %></h3>
+	<h3>新しいカテゴリ名：<%= f.text_field :name %>
+	<%= f.submit "上書き" %></h3>
+<% end %>
+<br>
+<br>
+<h2>既存のカテゴリ一覧</h2>
+
+<% @categories.each do |category| %>
+<ul>
+	<li>
+		<%= category.name %>
+	</li>
+</ul>	
+
+<% end %>
+
+<p><%= link_to "Topページへ", blogs_path %></p>
+<p><%= link_to "adminページへ", admin_path %></p>

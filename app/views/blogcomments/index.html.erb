@@ -1,0 +1,25 @@
+<h1>ブログコメントのテスト</h1>
+<%= form_for(@blogcomment) do |f| %>
+	<h3>カテゴリ名：<%= f.text_area :comment %>
+		<%= f.number_field :blog_id %>
+		<%= f.number_field :user_id %>
+	<%= f.submit "コメントの追加" %></h3>
+<% end %>
+<br>
+<br>
+<h2>既存のコメント一覧</h2>
+
+<% @blogcomments.each do |comment| %>
+<ul>
+	<li>
+		○<%= comment.comment %>
+	</li>
+</ul>	
+
+<% end %>
+<br>
+<br>
+<br>
+<p><%= link_to "mysiteへ", blogs_path %></p>
+<p><%= link_to "adminページへ", admin_path %></p>
+

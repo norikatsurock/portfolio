@@ -1,0 +1,484 @@
+  [1m[35m (2.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "albums"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE TABLE "albums" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "date" date, "place" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "blogcomments"[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE TABLE "blogcomments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" text, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "blogs"[0m
+  [1m[35m (12.3ms)[0m  [1m[35mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "image_id" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "category_id" integer)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories"[0m
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "news"[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "news" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "photos"[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE TABLE "photos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "image_id" text, "album_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "topics"[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "topics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (16.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (21.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.3ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (12.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20171007021055)[0m
+  [1m[35m (17.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20171004062313),
+(20171005124920),
+(20171004062812),
+(20171006055405),
+(20171007020835),
+(20171006153621),
+(20171006074822),
+(20171004062017),
+(20171004062156),
+(20171005123748);
+
+[0m
+  [1m[35m (14.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (6.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2017-10-08 09:36:53.135322"], ["updated_at", "2017-10-08 09:36:53.135322"]]
+  [1m[35m (10.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (3.8ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:53.758425', '2017-10-08 09:36:53.758425', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:53.758425', '2017-10-08 09:36:53.758425', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:53.767808', '2017-10-08 09:36:53.767808', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:53.767808', '2017-10-08 09:36:53.767808', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:53.771002', '2017-10-08 09:36:53.771002', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:53.771002', '2017-10-08 09:36:53.771002', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:53.775015', '2017-10-08 09:36:53.775015', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:53.775015', '2017-10-08 09:36:53.775015', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:53.778960', '2017-10-08 09:36:53.778960', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:53.778960', '2017-10-08 09:36:53.778960', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (2.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:53.783223', '2017-10-08 09:36:53.783223', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:53.783223', '2017-10-08 09:36:53.783223', 298486374)[0m
+  [1m[35m (10.8ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (5.1ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.9ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.558503', '2017-10-08 09:36:54.558503', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.558503', '2017-10-08 09:36:54.558503', 298486374)[0m
+  [1m[36mFixture Delete (1.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.570221', '2017-10-08 09:36:54.570221', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.570221', '2017-10-08 09:36:54.570221', 298486374)[0m
+  [1m[36mFixture Delete (0.9ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.576764', '2017-10-08 09:36:54.576764', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.576764', '2017-10-08 09:36:54.576764', 298486374)[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.579898', '2017-10-08 09:36:54.579898', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.579898', '2017-10-08 09:36:54.579898', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.582852', '2017-10-08 09:36:54.582852', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.582852', '2017-10-08 09:36:54.582852', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.5ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.585396', '2017-10-08 09:36:54.585396', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.585396', '2017-10-08 09:36:54.585396', 298486374)[0m
+  [1m[35m (10.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (3.4ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.641372', '2017-10-08 09:36:54.641372', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.641372', '2017-10-08 09:36:54.641372', 298486374)[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.648603', '2017-10-08 09:36:54.648603', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.648603', '2017-10-08 09:36:54.648603', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.651174', '2017-10-08 09:36:54.651174', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.651174', '2017-10-08 09:36:54.651174', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.653468', '2017-10-08 09:36:54.653468', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.653468', '2017-10-08 09:36:54.653468', 298486374)[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.656476', '2017-10-08 09:36:54.656476', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.656476', '2017-10-08 09:36:54.656476', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.3ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.658612', '2017-10-08 09:36:54.658612', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.658612', '2017-10-08 09:36:54.658612', 298486374)[0m
+  [1m[35m (14.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (5.6ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.716799', '2017-10-08 09:36:54.716799', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.716799', '2017-10-08 09:36:54.716799', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.726639', '2017-10-08 09:36:54.726639', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.726639', '2017-10-08 09:36:54.726639', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.729062', '2017-10-08 09:36:54.729062', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.729062', '2017-10-08 09:36:54.729062', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.731540', '2017-10-08 09:36:54.731540', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.731540', '2017-10-08 09:36:54.731540', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.733878', '2017-10-08 09:36:54.733878', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.733878', '2017-10-08 09:36:54.733878', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.4ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.736402', '2017-10-08 09:36:54.736402', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.736402', '2017-10-08 09:36:54.736402', 298486374)[0m
+  [1m[35m (10.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (4.5ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.792408', '2017-10-08 09:36:54.792408', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.792408', '2017-10-08 09:36:54.792408', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.800950', '2017-10-08 09:36:54.800950', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.800950', '2017-10-08 09:36:54.800950', 298486374)[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.803399', '2017-10-08 09:36:54.803399', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.803399', '2017-10-08 09:36:54.803399', 298486374)[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.805343', '2017-10-08 09:36:54.805343', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.805343', '2017-10-08 09:36:54.805343', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.808024', '2017-10-08 09:36:54.808024', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.808024', '2017-10-08 09:36:54.808024', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.9ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.811692', '2017-10-08 09:36:54.811692', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.811692', '2017-10-08 09:36:54.811692', 298486374)[0m
+  [1m[35m (11.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (3.7ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.9ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.862952', '2017-10-08 09:36:54.862952', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.862952', '2017-10-08 09:36:54.862952', 298486374)[0m
+  [1m[36mFixture Delete (1.4ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.871609', '2017-10-08 09:36:54.871609', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.871609', '2017-10-08 09:36:54.871609', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.875514', '2017-10-08 09:36:54.875514', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.875514', '2017-10-08 09:36:54.875514', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.878302', '2017-10-08 09:36:54.878302', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.878302', '2017-10-08 09:36:54.878302', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.880945', '2017-10-08 09:36:54.880945', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.880945', '2017-10-08 09:36:54.880945', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.3ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.884108', '2017-10-08 09:36:54.884108', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.884108', '2017-10-08 09:36:54.884108', 298486374)[0m
+  [1m[35m (12.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (3.5ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.939409', '2017-10-08 09:36:54.939409', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:54.939409', '2017-10-08 09:36:54.939409', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.947400', '2017-10-08 09:36:54.947400', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:54.947400', '2017-10-08 09:36:54.947400', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.949625', '2017-10-08 09:36:54.949625', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:54.949625', '2017-10-08 09:36:54.949625', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.952144', '2017-10-08 09:36:54.952144', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:54.952144', '2017-10-08 09:36:54.952144', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.954983', '2017-10-08 09:36:54.954983', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:54.954983', '2017-10-08 09:36:54.954983', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.6ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.957548', '2017-10-08 09:36:54.957548', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:54.957548', '2017-10-08 09:36:54.957548', 298486374)[0m
+  [1m[35m (12.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (3.5ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:55.014051', '2017-10-08 09:36:55.014051', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-08 09:36:55.014051', '2017-10-08 09:36:55.014051', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:55.022271', '2017-10-08 09:36:55.022271', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-08 09:36:55.022271', '2017-10-08 09:36:55.022271', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:55.025985', '2017-10-08 09:36:55.025985', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-08 09:36:55.025985', '2017-10-08 09:36:55.025985', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:55.028751', '2017-10-08 09:36:55.028751', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-08 09:36:55.028751', '2017-10-08 09:36:55.028751', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:55.030651', '2017-10-08 09:36:55.030651', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-08 09:36:55.030651', '2017-10-08 09:36:55.030651', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.7ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:55.033041', '2017-10-08 09:36:55.033041', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-08 09:36:55.033041', '2017-10-08 09:36:55.033041', 298486374)[0m
+  [1m[35m (11.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (3.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "albums"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (22.0ms)[0m  [1m[35mCREATE TABLE "albums" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "date" date, "place" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "blogcomments"[0m
+  [1m[35m (14.3ms)[0m  [1m[35mCREATE TABLE "blogcomments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comment" text, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "blogs"[0m
+  [1m[35m (14.0ms)[0m  [1m[35mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "image_id" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "category_id" integer)[0m
+  [1m[35m (6.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories"[0m
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "blog_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "news"[0m
+  [1m[35m (12.2ms)[0m  [1m[35mCREATE TABLE "news" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "photos"[0m
+  [1m[35m (12.9ms)[0m  [1m[35mCREATE TABLE "photos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "image_id" text, "album_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "topics"[0m
+  [1m[35m (14.7ms)[0m  [1m[35mCREATE TABLE "topics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (18.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "admin" boolean DEFAULT 'f')[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.5ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (14.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (17.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20171009083719)[0m
+  [1m[35m (17.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20171004062313),
+(20171005124920),
+(20171004062812),
+(20171006055405),
+(20171007020835),
+(20171006153621),
+(20171007021055),
+(20171006074822),
+(20171004062017),
+(20171004062156),
+(20171005123748);
+
+[0m
+  [1m[35m (17.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (5.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2017-10-09 10:56:32.643236"], ["updated_at", "2017-10-09 10:56:32.643236"]]
+  [1m[35m (8.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (4.7ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.8ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:33.102832', '2017-10-09 10:56:33.102832', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:33.102832', '2017-10-09 10:56:33.102832', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:33.114921', '2017-10-09 10:56:33.114921', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:33.114921', '2017-10-09 10:56:33.114921', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:33.118269', '2017-10-09 10:56:33.118269', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:33.118269', '2017-10-09 10:56:33.118269', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:33.122305', '2017-10-09 10:56:33.122305', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:33.122305', '2017-10-09 10:56:33.122305', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:33.126382', '2017-10-09 10:56:33.126382', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:33.126382', '2017-10-09 10:56:33.126382', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (2.3ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:33.131875', '2017-10-09 10:56:33.131875', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:33.131875', '2017-10-09 10:56:33.131875', 298486374)[0m
+  [1m[35m (12.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (3.4ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.113047', '2017-10-09 10:56:34.113047', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.113047', '2017-10-09 10:56:34.113047', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.120634', '2017-10-09 10:56:34.120634', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.120634', '2017-10-09 10:56:34.120634', 298486374)[0m
+  [1m[36mFixture Delete (1.2ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.124866', '2017-10-09 10:56:34.124866', 980190962)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.124866', '2017-10-09 10:56:34.124866', 298486374)[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.131725', '2017-10-09 10:56:34.131725', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.131725', '2017-10-09 10:56:34.131725', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.135041', '2017-10-09 10:56:34.135041', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.135041', '2017-10-09 10:56:34.135041', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (3.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.138635', '2017-10-09 10:56:34.138635', 980190962)[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.138635', '2017-10-09 10:56:34.138635', 298486374)[0m
+  [1m[35m (15.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (7.6ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.9ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.202502', '2017-10-09 10:56:34.202502', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.202502', '2017-10-09 10:56:34.202502', 298486374)[0m
+  [1m[36mFixture Delete (1.0ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.217210', '2017-10-09 10:56:34.217210', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.217210', '2017-10-09 10:56:34.217210', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.225973', '2017-10-09 10:56:34.225973', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.225973', '2017-10-09 10:56:34.225973', 298486374)[0m
+  [1m[36mFixture Delete (0.4ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.228909', '2017-10-09 10:56:34.228909', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.228909', '2017-10-09 10:56:34.228909', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.230989', '2017-10-09 10:56:34.230989', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.230989', '2017-10-09 10:56:34.230989', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.7ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.234187', '2017-10-09 10:56:34.234187', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.234187', '2017-10-09 10:56:34.234187', 298486374)[0m
+  [1m[35m (15.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (5.3ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.8ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.304917', '2017-10-09 10:56:34.304917', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.304917', '2017-10-09 10:56:34.304917', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.317718', '2017-10-09 10:56:34.317718', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.317718', '2017-10-09 10:56:34.317718', 298486374)[0m
+  [1m[36mFixture Delete (1.6ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.321524', '2017-10-09 10:56:34.321524', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.321524', '2017-10-09 10:56:34.321524', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.326132', '2017-10-09 10:56:34.326132', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.326132', '2017-10-09 10:56:34.326132', 298486374)[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.328647', '2017-10-09 10:56:34.328647', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.328647', '2017-10-09 10:56:34.328647', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.6ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.331204', '2017-10-09 10:56:34.331204', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.331204', '2017-10-09 10:56:34.331204', 298486374)[0m
+  [1m[35m (17.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (3.0ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.6ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.408242', '2017-10-09 10:56:34.408242', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.408242', '2017-10-09 10:56:34.408242', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.416716', '2017-10-09 10:56:34.416716', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.416716', '2017-10-09 10:56:34.416716', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.419737', '2017-10-09 10:56:34.419737', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.419737', '2017-10-09 10:56:34.419737', 298486374)[0m
+  [1m[36mFixture Delete (1.0ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.422174', '2017-10-09 10:56:34.422174', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.422174', '2017-10-09 10:56:34.422174', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.425985', '2017-10-09 10:56:34.425985', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.425985', '2017-10-09 10:56:34.425985', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.4ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.429590', '2017-10-09 10:56:34.429590', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.429590', '2017-10-09 10:56:34.429590', 298486374)[0m
+  [1m[35m (14.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (12.7ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.9ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.507240', '2017-10-09 10:56:34.507240', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.507240', '2017-10-09 10:56:34.507240', 298486374)[0m
+  [1m[36mFixture Delete (1.1ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.524799', '2017-10-09 10:56:34.524799', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.524799', '2017-10-09 10:56:34.524799', 298486374)[0m
+  [1m[36mFixture Delete (1.3ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.530894', '2017-10-09 10:56:34.530894', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.530894', '2017-10-09 10:56:34.530894', 298486374)[0m
+  [1m[36mFixture Delete (0.9ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.536193', '2017-10-09 10:56:34.536193', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.536193', '2017-10-09 10:56:34.536193', 298486374)[0m
+  [1m[36mFixture Delete (1.2ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.540369', '2017-10-09 10:56:34.540369', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.540369', '2017-10-09 10:56:34.540369', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (3.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.545017', '2017-10-09 10:56:34.545017', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.545017', '2017-10-09 10:56:34.545017', 298486374)[0m
+  [1m[35m (16.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (5.5ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.615348', '2017-10-09 10:56:34.615348', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.615348', '2017-10-09 10:56:34.615348', 298486374)[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.627384', '2017-10-09 10:56:34.627384', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.627384', '2017-10-09 10:56:34.627384', 298486374)[0m
+  [1m[36mFixture Delete (0.9ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.629932', '2017-10-09 10:56:34.629932', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.629932', '2017-10-09 10:56:34.629932', 298486374)[0m
+  [1m[36mFixture Delete (0.5ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.634621', '2017-10-09 10:56:34.634621', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.634621', '2017-10-09 10:56:34.634621', 298486374)[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.636645', '2017-10-09 10:56:34.636645', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.636645', '2017-10-09 10:56:34.636645', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (2.0ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.641817', '2017-10-09 10:56:34.641817', 980190962)[0m
+  [1m[36mFixture Insert (0.9ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.641817', '2017-10-09 10:56:34.641817', 298486374)[0m
+  [1m[35m (14.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (8.1ms)[0m  [1m[31mDELETE FROM "albums"[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.716170', '2017-10-09 10:56:34.716170', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "albums" ("title", "date", "place", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-07', 'MyText', '2017-10-09 10:56:34.716170', '2017-10-09 10:56:34.716170', 298486374)[0m
+  [1m[36mFixture Delete (0.8ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.729442', '2017-10-09 10:56:34.729442', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2017-10-09 10:56:34.729442', '2017-10-09 10:56:34.729442', 298486374)[0m
+  [1m[36mFixture Delete (0.9ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.732818', '2017-10-09 10:56:34.732818', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "blog_id", "created_at", "updated_at", "id") VALUES (1, 1, '2017-10-09 10:56:34.732818', '2017-10-09 10:56:34.732818', 298486374)[0m
+  [1m[36mFixture Delete (1.2ms)[0m  [1m[31mDELETE FROM "photos"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.736799', '2017-10-09 10:56:34.736799', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "photos" ("image_id", "album_id", "created_at", "updated_at", "id") VALUES ('MyText', 1, '2017-10-09 10:56:34.736799', '2017-10-09 10:56:34.736799', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "blogs"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.739873', '2017-10-09 10:56:34.739873', 980190962, 110791571)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "blogs" ("title", "body", "image_id", "created_at", "updated_at", "id", "category_id") VALUES ('MyString', 'MyString', 'MyString', '2017-10-09 10:56:34.739873', '2017-10-09 10:56:34.739873', 298486374, 110791571)[0m
+  [1m[36mFixture Delete (1.4ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.743450', '2017-10-09 10:56:34.743450', 980190962)[0m
+  [1m[36mFixture Insert (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-10-09 10:56:34.743450', '2017-10-09 10:56:34.743450', 298486374)[0m
+  [1m[35m (16.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m

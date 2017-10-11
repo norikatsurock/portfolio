@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<% if current_page?("/admin") %>
+  <h1>管理者ページ</h1>
+<% elsif current_page?("/admin/blogs") %>
+  <h1>ブログ編集用のページ</h1>
+<% elsif current_page?("/users/sign_in") %>
+<% elsif current_page?("/users/sign_up")  %>
+<% elsif current_page?("/categories")  %>
+<% else %>
+  <header>
+    <h3 class ="header-headline"><a href="/blogs">My Site</a></h3>
+    <div class="header-link">
+    <% if user_signed_in? && current_user.admin?%>
+            <i><%= link_to "管理ページ", admin_path, target: "_blank" %></i>
+            <i><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></i>
+    <% elsif user_signed_in? %>
+           <i><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></i>
+    <% else %>
+            <a href="/users/sign_in"><i class="fa fa-user" aria-hidden="true"></i></a>
+    <% end %>
+    </div>
+  </header>
+  <nav>
+    <ul class="nav-list">
+      <li class="nav-list-item"><a href="/blogs">HOME</a></li>
+      <li class="nav-list-item"><a href="/albums">AlbumS</a></li>
+      <li class="nav-list-item"><a href="/blogs">BlogS</a></li>
+      <li class="nav-list-item">About us</li>
+    </ul>
+  </nav>
+<% end %>
+    <%= yield %>
+  </body>
+</html>

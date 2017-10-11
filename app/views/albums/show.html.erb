@@ -1,0 +1,23 @@
+<body>
+	<main>
+	<section class="main-contair clearfix">
+		<section class="album-contair clearfix">
+		<section class="album-headline">
+			<h4 class="photo-title"><%= @album.title %></h4>
+			<div class="photo-date">作成日時：<%= @album.date %></div>
+			<div class="photo-place">撮影場所：<%= @album.place %></div>
+		</section>
+				<% @album.photos.each do |photo| %>
+			<div class="photo-box">
+					<%= attachment_image_tag(photo, :image, :fill, 360, 270, format: 'JPG') %>
+			</div>
+				<% end %>
+
+		</section>
+	</section>
+	</main>
+	<footer>
+		<p class="footer-text">SHIMIZUが初めて作ったサイトです</p>
+	</footer>
+</body>
+

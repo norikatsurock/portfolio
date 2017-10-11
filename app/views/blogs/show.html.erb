@@ -1,0 +1,113 @@
+
+<body>
+	<main>
+		<div class="main-contair clearfix">
+
+	<!-- ここからSlidebar -->
+			<div class="sidebar">
+				<section class ="favorite">
+					<h2 class="favorite-headline">いいねの多い記事</h2>
+					<div class="favorite-content">
+ 						<% @rank_top5.each do |rank| %>
+						<p class="favorite-content-text">
+							<%= link_to rank.title, blog_path(rank) %><br>
+							<i class="fa fa-thumbs-o-up fa-white" aria-hidden="true" color="white"></i><%= rank.favorites.count %>いいね
+						<% end %>
+						</p>
+					</div>
+				</section>
+			<div class="slidebar-blank"></div>
+				<section class ="latest">
+					<h2 class="latest-headline">最近の投稿記事</h2>
+					<div class="latest-content">
+						<% @blogs.first(5).each do |blog| %>
+							<p class="latest-content-text"><%= link_to blog.title, blog_path(blog) %></p>
+						<% end %>
+					</div>
+				</section>
+			<div class="slidebar-blank"></div>
+				<section class="category">
+					<h2 class="category-headline">カテゴリー</h2>
+					<div class="category-content">
+						<% @categories.each do |category| %>
+						 <p class="category-content-text"><%=link_to category.name, category_blog_path(category.name) %>(<%= @category_count.where(category_id: category.id).count %>)
+						</p>
+						<% end %>
+					</div>
+				</section>
+			</div>
+	<!-- ここまでSlidebar -->
+
+	<!-- ここからBlog -->
+			<section class="blog-item-box">
+				<h2 class="blog-item-headline">Blog</h2>
+				<div class="blog-item-title"><%= @blog.title %></div>
+				<div class="blog-item-text">
+				<div class="blog-item-date"><i class="fa fa-clock-o fa-grey" aria-hidden="true" ></i><%= @blog.created_at.strftime("%Y/%m/%d %H:%M")  %></div>
+				<span class="blog-item-category"><%= link_to @categories.find(@blog.category_id).name, category_blog_path(@categories.find(@blog.category_id).name,) %>
+				</span>
+			</div>
+			<% if user_signed_in? %>
+				<% if @blog.favorited_by? current_user %>
+					<%= link_to blog_favorites_path(@blog), method: :delete do %>
+						<i class="fa fa-thumbs-up fa-grey" aria-hidden="true" ></i>
+					<% end %>
+				<% else %>
+					<%= link_to blog_favorites_path(@blog), method: :post do %>
+						<i class="fa fa-thumbs-o-up  fa-grey" aria-hidden="true"></i>
+					<% end %>
+				<% end %>
+			<% else %>
+					<%= link_to blog_favorites_path(@blog), method: :post do %>
+						<i class="fa fa-thumbs-o-up  fa-grey" aria-hidden="true"></i>
+					<% end %>
+			<% end %>
+							<%= @blog.favorites.count %>　
+							コメント<%= @blog.blogcomments.count %>件
+				<p class="blog-item-img">
+				 　<% if  @blog.image_id.present? %>
+                   	 <%= attachment_image_tag @blog, :image, :fill, 300, 300, format: 'jpg' %>
+                	<% end %>
+                </p>
+				<div class="blog-item-body"><%= simple_format(@blog.body) %></div>
+			</section>
+	<!-- ここまでBlog -->
+
+	<!-- ここからComment -->
+				<div class="comment">
+					<p class="comment-headline">【この記事へのコメント】</p>
+					<%= form_for ([@blog, @blog.blogcomments.build]) do |f| %>
+						<% if user_signed_in? %>
+							  表示名　：<%= f.text_field :from, placeholder:'表示名を入力' %><br>
+							 コメント：<%= f.text_area :comment, placeholder:"コメントを入力", size:"70×500" %>
+								<%= f.submit "コメントを送信します" %>
+						<% end %>
+					<% @blog.blogcomments.each do |comment| %>
+						<% if comment.user_id == current_user.id %>
+						<p class="comment-text">
+							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %>
+							<%= link_to "  [コメントを削除]",  blog_blogcomment_path(blog_id: @blog, id: comment),method: :delete, "data-confirm" => "コメントを削除します", :style => "color:black;" %><br>
+							■<%= comment.from %>さん
+							<%= simple_format(comment.comment) %>
+						</p>
+						<% else %>
+						<p class="comment-text">
+							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %><br>
+							■<%= comment.from %>さん
+							<%= simple_format(comment.comment) %>
+						</p>
+						<% end %>
+				<% end %>
+				<% end %>
+				</div>
+	<!-- ここまでComment -->
+
+		</div>
+	</main>
+
+	<footer>
+		<p class="footer-text">SHIMIZUが初めて作ったサイトです</p>
+	</footer>
+
+</body>
+
