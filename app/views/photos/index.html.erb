@@ -1,6 +1,0 @@
-<h2>アルバム一覧</h2>
-
-<% @photos.each do |photo| %>
-<p><%= attachment_image_tag photo, :image, :fill , 100, 100, format: "JPG" %></p>
-<p><%= photo.album.title %></p>
-<% end %>

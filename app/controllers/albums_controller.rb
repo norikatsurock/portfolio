@@ -22,6 +22,8 @@ class AlbumsController < ApplicationController
 
 	def edit
 		@album = Album.find(params[:id])
+  		@photo = Photo.new
+  		@photos = Photo.where(album_id: params[:id])
 	end
 
 	def update

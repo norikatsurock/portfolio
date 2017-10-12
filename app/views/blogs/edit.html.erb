@@ -8,12 +8,12 @@
 	<h4>本文</h4>
 	<%= f.text_area :body %>
 	<h4>画像</h4>
-	<%= attachment_image_tag @blog, :image ,:fill, 100,100%><br>
+	<%= attachment_image_tag @blog, :image ,:fill, 100,100%>
 	<%= f.check_box :remove_image %>
 	<%= f.label :写真の削除 %>
 	<br>
 	<br>
-	<h4>画像を入れ替え</h4>
+	<h4>画像の差し替えの場合は写真を選択</h4>
 	<%= f.attachment_field :image %>
 
 <br>

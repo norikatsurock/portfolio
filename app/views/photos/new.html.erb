@@ -8,13 +8,15 @@
 		<h4>写真の選択</h4>
 		<%= f.attachment_field :image%>
 		<%= f.submit "投稿" %>
-	<% end %>
-	<br>
-	<br>
-	<h4>登録済みの写真</h4>
-	<% @photos.each do |photo| %>
-		<%= attachment_image_tag(photo, :image, :fill, 100, 100, format: "JPG") %>
-	<% end %>
+		<br>
+		<br>
+			<h4>登録済みの写真</h4>
+			<% @photos.each do |photo| %>
+				<div class="photo-edit">
+				<%= attachment_image_tag photo, :image, :fill, 100, 100, format: "JPG" %>
+				</div>
+			<% end %>
+		<% end %>
 <br>
 <br>
 <br>

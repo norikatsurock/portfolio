@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root "blogs#index"
 
   devise_for :users
-  
   resources :blogs do
     resource :favorites, only: [:create, :destroy]
     resources :blogcomments
@@ -20,7 +19,7 @@ Rails.application.routes.draw do
   get "/admin/albums/:id/photos" => "photos#new", as: "admin_photos"
   post "admin/albums/:id/photos" => "photos#create", as: "photos"
   get "admin/albums/:id/photos/edit" => "photos#edit", as: "edit_photos"
-
+  delete "admin/albums/:album_id/edit/:id" => "photos#destroy", as: "destroy_photo"
   get "/blogs/category/:name" => "blogs#category", as: "category_blog"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
