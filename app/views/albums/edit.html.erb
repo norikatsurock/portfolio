@@ -13,7 +13,7 @@
 <br>
 
 	<h3>■アルバムへ写真を追加する</h3>
-<%= form_for @photo, url: photos_path, method: :post do |f| %>
+<%= form_for @photo, url: admin_photos_create_path, method: :post do |f| %>
 	<%= f.attachment_field :image%>
 	<%= f.submit "選択した写真を追加" %>
 <% end %>
@@ -23,7 +23,7 @@
 	<h3>■アルバムの写真を削除する</h3>
 <% @photos.each do |photo| %>
 	<%= attachment_image_tag(photo, :image, :fill, 100, 100, format: "JPG") %>
-	<%= link_to "写真の削除", destroy_photo_path(album_id: photo.album_id, id: photo), method: :delete, :style => 'color:grey;' %>
+	<%= link_to "写真の削除", admin_photos_destroy_path(album_id: photo.album_id, id: photo), method: :delete, :style => 'color:grey;' %>
 <% end %>
 
 

@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   get "/admin/blogs" => "admin#adminblogs", as: "admin_blogs"
   get "/admin/albums" => "admin#adminalbums", as: "admin_albums"
   get "/admin/albums/:id/photos" => "photos#new", as: "admin_photos"
-  post "admin/albums/:id/photos" => "photos#create", as: "photos"
+  post "admin/albums/:id/photos" => "photos#create", as: "admin_photos_create"
   get "admin/albums/:id/photos/edit" => "photos#edit", as: "edit_photos"
-  delete "admin/albums/:album_id/edit/:id" => "photos#destroy", as: "destroy_photo"
+  delete "admin/albums/:album_id/edit/:id" => "photos#destroy", as: "admin_photos_destroy"
   get "/blogs/category/:name" => "blogs#category", as: "category_blog"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

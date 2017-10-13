@@ -21,7 +21,10 @@
 					<h2 class="latest-headline">最近の投稿記事</h2>
 					<div class="latest-content">
 						<% @blogs.first(5).each do |blog| %>
-							<p class="latest-content-text"><%= link_to blog.title, blog_path(blog) %></p>
+							<p class="latest-content-text">
+								<%= blog.created_at.strftime("%Y/%m/%d") %><br>
+								<%= link_to blog.title, blog_path(blog) %>
+							</p>
 						<% end %>
 					</div>
 				</section>
