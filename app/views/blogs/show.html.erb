@@ -85,8 +85,8 @@
 							 コメント：<%= f.text_area :comment, placeholder:"コメントを入力", size:"70×500" %>
 								<%= f.submit "コメントを送信します" %>
 						<% end %>
-					<% @blog.blogcomments.each do |comment| %>
-						<% if comment.user_id == current_user.id %>
+					<% @blog.blogcomments.order("created_at desc").each do |comment| %>
+						<% if current_user.admin? || comment.user_id == current_user.id %>
 						<p class="comment-text">
 							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %>
 							<%= link_to "  [コメントを削除]",  blog_blogcomment_path(blog_id: @blog, id: comment),method: :delete, "data-confirm" => "コメントを削除します", :style => "color:black;" %><br>
@@ -107,10 +107,5 @@
 
 		</div>
 	</main>
-
-	<footer>
-		<p class="footer-text">SHIMIZUが初めて作ったサイトです</p>
-	</footer>
-
 </body>
 

@@ -2,7 +2,7 @@
 class AlbumsController < ApplicationController
 
 	def index
-		@albums = Album.order('updated_at').page(params[:page]).per(8)
+		@albums = Album.all.page(params[:page]).per(8)
 		@photos = Photo.all
 	end
 

@@ -3,7 +3,7 @@
 	<section class="main-contair clearfix">
 		<section class="album-contair clearfix">
 			<h2 class="album-headline">AlbumS</h2>
-			<% @albums.each do |album| %>
+			<% @albums.order('date desc').each do |album| %>
 			<div class="album-box">
 				<div class ="album-box-title">
 					<%=link_to album.title, album_path(album) %></div>
@@ -25,7 +25,4 @@
 		</section>
 	</section>
 	</main>
-	<footer>
-		<p class="footer-text">SHIMIZUが初めて作ったサイトです</p>
-	</footer>
 </body>

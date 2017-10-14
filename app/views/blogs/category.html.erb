@@ -1,34 +1,8 @@
 <body>
 	<main>
 	<section class="main-contair clearfix">
-		<section class="blog-contair clearfix">
-			<h2 class="blog-headline">Blogs</h2>
-			<% @blog.each do |blog| %>
-				<div class="blog-box clearfix">
-				<div class="blog-box-img">
-				 　<% if  blog.image_id.present? %>
-                   	 <%= attachment_image_tag blog, :image, :fill , 200, 200, format: "JPG" %>
-                	<% else %>
-				     <%= image_tag "no_image.jpg", :width => "200", :height => "200" %>
-                	<% end %>
-                	</div>
-					<div class="blog-box-date"><i class="fa fa-clock-o" aria-hidden="true"></i>
-						<%= blog.created_at.strftime("%Y.%m.%d") %>
-					</div>
-					<div class ="blog-box-title">
-						<%= link_to blog.title, blog_path(blog) %>
-					</div>
-					<div class="blog-box-category">
-						<%= link_to @categories.find(blog.category_id).name, category_blog_path(blog.category_id) %>
-					</div>
-					<div class="blog-box-body">
-						<%= simple_format(blog.body.truncate(30)) %>
-					</div>
 
-				</div>
-			<% end %>
-       <div class="paginate"><%= paginate @blog %></div>
-		</section>
+	<!-- ここからSlidebar -->
 		<div class="sidebar">
 			<section class ="news">
 				<h2 class="news-headline">お知らせ</h2>
@@ -47,16 +21,46 @@
 				<div class="category-content">
 					<% @categories.each do |category| %>
 					 <p class="category-content-text">
-					    <%=link_to category.name, category_blog_path(category.id) %>(<%= @category_count.where(category_id: category.id).count %>)
+							<%=link_to category.name, category_blog_path(category.name) %>(<%= @category_count.where(category_id: category.id).count %>)
 					</p>
 					<% end %>
 				</div>
 
 			</section>
 		</div>
+	<!-- ここまでSlidebar -->
+
+	<!-- ここからBlog -->
+		<section class="blog-contair clearfix">
+			<h2 class="blog-headline">Blogs</h2>
+			<% @blog.each do |blog| %>
+				<div class="blog-box clearfix">
+				<div class="blog-box-img">
+				 　<% if  blog.image_id.present? %>
+                   	 <%= attachment_image_tag blog, :image, :fill , 200, 200, format: "JPG" %>
+                	<% else %>
+				     <%= image_tag "no_image.jpg", :width => "200", :height => "200" %>
+                	<% end %>
+                	</div>
+					<div class="blog-box-date"><i class="fa fa-clock-o" aria-hidden="true"></i>
+						<%= blog.created_at.strftime("%Y.%m.%d") %>
+					</div>
+					<div class ="blog-box-title">
+						<%= link_to blog.title, blog_path(blog) %>
+					</div>
+					<div class="blog-box-category">
+						<%= link_to @categories.find(blog.category_id).name, category_blog_path(@categories.find(blog.category_id).name) %>
+					</div>
+					<div class="blog-box-body">
+						<%= simple_format(blog.body.truncate(30)) %>
+					</div>
+
+				</div>
+			<% end %>
+       <div class="paginate"><%= paginate @blog %></div>
+		</section>
+	<!-- ここまでBlog -->
+
 	</section>
 	</main>
-	<footer>
-		<p class="footer-text">SHIMIZUが初めて作ったサイトです</p>
-	</footer>
 </body>

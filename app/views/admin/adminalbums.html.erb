@@ -4,7 +4,7 @@
 	<p><%= link_to "→管理者ページへ戻る←", admin_path %></p>
 </section>
 
-<% @albums.each do |album| %>
+<% @albums.order('date desc')each do |album| %>
 	<div class="admin_blog clearfix">
 		<div class="admin_blog_box">
 			<p class="admin_blog_title">タイトル｜<%= album.title %></p>

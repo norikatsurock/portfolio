@@ -9,14 +9,6 @@
   </head>
 
   <body>
-<% if current_page?("/admin") %>
-  <h1>管理者ページ</h1>
-<% elsif current_page?("/admin/blogs") %>
-  <h1>ブログ編集用のページ</h1>
-<% elsif current_page?("/users/sign_in") %>
-<% elsif current_page?("/users/sign_up")  %>
-<% elsif current_page?("/categories")  %>
-<% else %>
   <header>
     <h3 class ="header-headline"><a href="/blogs">My Site</a></h3>
     <div class="header-link">
@@ -38,7 +30,11 @@
       <li class="nav-list-item">About us</li>
     </ul>
   </nav>
-<% end %>
+  
     <%= yield %>
+
+  <footer>
+    <p class="footer-text">All Rights Reserved SHIMIZU </p>
+  </footer>
   </body>
 </html>

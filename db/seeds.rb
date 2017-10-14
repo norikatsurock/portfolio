@@ -7,11 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 50.times do |i|
-	Blog.create!(
-		image: open("app/assets/images/forest.jpg"),
-		title: "#{i}回目の投稿のテスト"
-		body: "#{i}回目の本文の投稿テスト"
+	Blogcomment.create!(
 		user_id: rand(1..4),
-		blog_id: rand(8..35)
+		blog_id: rand(8..35),
+		comment: "#{i}回目のコメントのテスト投稿です"
 		)
 end

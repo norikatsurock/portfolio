@@ -1,9 +1,5 @@
 class BlogsController < ApplicationController
 
-  def admin
-    
-  end
-
   def index
   	@category_count = Blog.all
     @blogs = Blog.all.page(params[:page]).per(6)
