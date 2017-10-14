@@ -1,9 +1,27 @@
 
+
 class AlbumsController < ApplicationController
 
-	def index
-		@albums = Album.all.page(params[:page]).per(8)
+	def indexplace2
 		@photos = Photo.all
+		@places = Album.group("place").order('place').pluck(:place)
+		@albums = Album.all.order('date desc')
+	end
+
+
+	def indexplace
+		@photos = Photo.all
+		@places = Album.group("place").order('place').pluck(:place)
+		@albums = Album.where(place: params[:place]).order('date desc')
+		@album_place = params[:place]
+	end
+
+
+
+	def index
+		@photos = Photo.all
+		@places = Album.group("place").order('place').pluck(:place)
+		@albums = Album.all.page(params[:page]).per(8)
 	end
 
 	def new

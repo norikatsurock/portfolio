@@ -2,7 +2,14 @@
 	<main>
 	<section class="main-contair clearfix">
 		<section class="album-contair clearfix">
-			<h2 class="album-headline">AlbumS</h2>
+			<h2 class="album-headline">AlbumS
+			<%= form_tag albums_place_path, :method => :get do %>
+			<%= select_tag 'place' ,options_for_select(@places) %>
+			<%= submit_tag "選択した場所で検索"%>
+			<% end %>
+			<%= button_to "選択した場所で検索の画面2", {controller: 'albums', action: 'indexplace2'}, {method: :get} %>
+			<%= button_to "すべてのアルバム表示", {controller: 'albums', action: 'index'}, {method: :get} %>
+		</h2>
 			<% @albums.order('date desc').each do |album| %>
 			<div class="album-box">
 				<div class ="album-box-title">

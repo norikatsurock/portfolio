@@ -7,7 +7,7 @@
 			<section class ="news">
 				<h2 class="news-headline">お知らせ</h2>
 				<div class="news-content">
-				<% @topics.first(7).each do |topic| %>
+				<% @topics.first(5).each do |topic| %>
 					<p class="news-content-text">
 						<%= topic.created_at.strftime("%Y.%m.%d") %><br>
 						<%= topic.body %>
@@ -32,7 +32,7 @@
 	<!-- ここからBlog -->
 		<section class="blog-contair clearfix">
 			<h2 class="blog-headline">Blogs</h2>
-			<% @blogs.each do |blog| %>
+			<% @blogs.order("created_at desc").each do |blog| %>
 				<div class="blog-box clearfix">
 				<div class="blog-box-img">
 				 　<% if  blog.image_id.present? %>

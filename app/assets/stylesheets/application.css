@@ -329,6 +329,16 @@ main{
 	border: 1px solid black;
 }
 
+.album-order{
+	width: 80%;
+	margin: 50px 10px 0;
+	padding-left: 10px;
+	text-align: left;
+	float: left;
+	color: white;
+	font-size: 27px;
+	background: linear-gradient(transparent 70%, #a7d6ff 70%);
+}
 .album-box-title{
 	width: 100%;
 	display: block;
