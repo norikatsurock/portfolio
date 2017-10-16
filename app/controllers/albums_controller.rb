@@ -1,27 +1,28 @@
 
 
 class AlbumsController < ApplicationController
+	before_action :set_album, only:[:index, :indexdate,:indexdate2, :indexplace, :indexplace2]
 
-	def indexplace2
-		@photos = Photo.all
-		@places = Album.group("place").order('place').pluck(:place)
+	def index
+		@albums = Album.order('date desc').page(params[:page]).per(12)
+	end
+
+	def indexdate
+		@albums = Album.all.order('date desc')
+		@date = params[:date]
+	end
+
+	def indexdate2
 		@albums = Album.all.order('date desc')
 	end
 
-
 	def indexplace
-		@photos = Photo.all
-		@places = Album.group("place").order('place').pluck(:place)
 		@albums = Album.where(place: params[:place]).order('date desc')
 		@album_place = params[:place]
 	end
 
-
-
-	def index
-		@photos = Photo.all
-		@places = Album.group("place").order('place').pluck(:place)
-		@albums = Album.all.page(params[:page]).per(8)
+	def indexplace2
+		@albums = Album.all.order('date desc')
 	end
 
 	def new
@@ -31,7 +32,7 @@ class AlbumsController < ApplicationController
 	def create
  		@album = Album.new(album_params)
 		@album.save
-    	redirect_to albums_path
+    	redirect_to admin_albums_path
 	end
 
 	def show
@@ -65,6 +66,14 @@ class AlbumsController < ApplicationController
 
 	def photo_params
 		params.require(:photo).permit(:image)
+	end
+
+	def set_album
+		@photos = Photo.all
+		@places = Album.group("place").pluck(:place)
+		album = Album.group("date").order('date desc').pluck(:date)
+		date = album.map{|date| date.strftime("%Y年%m月")}
+		@dates = date.uniq
 	end
 
 

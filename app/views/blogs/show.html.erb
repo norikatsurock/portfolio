@@ -84,9 +84,19 @@
 							  表示名　：<%= f.text_field :from, placeholder:'表示名を入力' %><br>
 							 コメント：<%= f.text_area :comment, placeholder:"コメントを入力", size:"70×500" %>
 								<%= f.submit "コメントを送信します" %>
+						<% else %>
+							<%= link_to "　→コメントするにはログインしてください←", new_user_session_path, :style => "color: black;" %>
 						<% end %>
+					<% end %>
 					<% @blog.blogcomments.order("created_at desc").each do |comment| %>
-						<% if current_user.admin? || comment.user_id == current_user.id %>
+						<% if user_signed_in? && current_user.admin? %>
+						<p class="comment-text">
+							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %>
+							<%= link_to "  [コメントを削除]",  blog_blogcomment_path(blog_id: @blog, id: comment),method: :delete, "data-confirm" => "コメントを削除します", :style => "color:black;" %><br>
+							■<%= comment.from %>さん
+							<%= simple_format(comment.comment) %>
+						</p>
+						<% elsif user_signed_in? && comment.user_id == current_user.id %>
 						<p class="comment-text">
 							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %>
 							<%= link_to "  [コメントを削除]",  blog_blogcomment_path(blog_id: @blog, id: comment),method: :delete, "data-confirm" => "コメントを削除します", :style => "color:black;" %><br>
@@ -100,7 +110,6 @@
 							<%= simple_format(comment.comment) %>
 						</p>
 						<% end %>
-				<% end %>
 				<% end %>
 				</div>
 	<!-- ここまでComment -->

@@ -321,17 +321,29 @@ main{
 	color: white;
 	font-size: 32px;
 }
+.album-refine{
+	text-align: left;
+	margin-top: 10px;
+	margin-right:50px;
+	padding: 20px;
+	line-height: 3;
+	display: inline-block;
+
+}
+
 
 .album-box{
 	background-color: rgba(255,255,255,0.7);
-	width: 275px;
+	width: 280px;
 	float: left;
 	border: 1px solid black;
+	display: inline-block;
+	margin: 10px;
 }
 
 .album-order{
 	width: 80%;
-	margin: 50px 10px 0;
+	margin: 20px 0 10px 10px;
 	padding-left: 10px;
 	text-align: left;
 	float: left;
@@ -339,6 +351,7 @@ main{
 	font-size: 27px;
 	background: linear-gradient(transparent 70%, #a7d6ff 70%);
 }
+
 .album-box-title{
 	width: 100%;
 	display: block;
@@ -360,36 +373,6 @@ main{
 	padding-top: 20px;
     height: 230px;
 	margin: 0 auto;
-}
-
-.album-box:nth-child(2){
-	margin: 20px;
-}
-.album-box:nth-child(3){
-	margin: 20px 20px 20px 0;
-}
-.album-box:nth-child(4){
-	margin: 20px 20px 20px 0;
-}
-
-.album-box:nth-child(5){
-	margin: 20px 20px 20px 0;
-}
-.album-box:nth-child(6){
-	margin: 0 20px 20px 20px;
-}
-.album-box:nth-child(7){
-	margin: 0 20px 20px 0;
-}
-.album-box:nth-child(8){
-	margin: 0 20px 20px 0;
-}
-.album-box:nth-child(9){
-	margin: 0 20px 20px 0;
-}
-
-.photo-title{
-	
 }
 
 .photo-date, .photo-place{

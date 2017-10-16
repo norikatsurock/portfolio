@@ -23,5 +23,8 @@ Rails.application.routes.draw do
   get "/blogs/category/:name" => "blogs#category", as: "category_blog"
   get "/albums/index/place" => "albums#indexplace", as: "albums_place"
   get "/albums/index/place2" => "albums#indexplace2", as: "albums_place2"
+  get "/albums/index/date" => "albums#indexdate", as: "albums_date"
+  get "/albums/index/date2" => "albums#indexdate2", as: "albums_date2"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
