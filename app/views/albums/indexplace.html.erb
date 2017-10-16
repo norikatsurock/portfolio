@@ -1,55 +1,58 @@
-
-	<main>
+<main>
 	<section class="main-contair clearfix">
-		<section class="album-contair clearfix">
-			<h2 class="album-headline">AlbumS</h2>
+	<section class="album-contair clearfix">
+		<h2 class="album-headline">AlbumS</h2>
+
 <!-- 折り畳み展開ポインタ -->
-<div onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
-<a style="cursor:pointer;">▼ アルバムの絞り込み ▼</a>
-</div>
+	<div onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
+	<a style="cursor:pointer;">▼ アルバムの絞り込み ▼</a>
+	</div>
 <!--// 折り畳み展開ポインタ -->
 
 <!-- 折り畳まれ部分 -->
-<div id="open" style="display:none;clear:both;">
+	<div id="open" style="display:none;clear:both;">
 			<div class="album-refine">
-			<%= button_to "場所ごとにすべてのアルバムを表示", {controller: 'albums', action: 'indexplace2'}, {method: :get}  %>
- 			<%= form_tag albums_place_path, :method => :get do %>
-			<%= select_tag 'place' ,options_for_select(@places), :prompt => "▼場所を選択してください" %>
-			<%= submit_tag "選択した場所のアルバムを表示" %>
-			<% end %>
+ 				<%= form_tag albums_place_path, :method => :get do %>
+				<%= select_tag 'place' ,options_for_select(@places), :prompt => "▼場所を選択してください" %>
+				<%= submit_tag "選択した場所のアルバムを表示" %>
+				<% end %>
+
+				<%= button_to "場所ごとにすべてのアルバムを表示", {controller: 'albums', action: 'indexplace2'}, {method: :get}  %>
 			</div>
+
 			<div class="album-refine">
-			<%= button_to "年月ごとにすべてのアルバムを表示", {controller: 'albums', action: 'indexdate2'}, {method: :get} %>
-			<%= form_tag albums_date_path, :method => :get do %>
-			<%= select_tag 'date' ,options_for_select(@dates), :prompt => '▼年月を選択してください' %>
-			<%= submit_tag "選択した年月のアルバムを表示" %>
-			<% end %>
+				<%= form_tag albums_date_path, :method => :get do %>
+				<%= select_tag 'date' ,options_for_select(@dates), :prompt => '▼年月を選択してください' %>
+				<%= submit_tag "選択した年月のアルバムを表示" %>
+				<% end %>
+				<%= button_to "年月ごとにすべてのアルバムを表示", {controller: 'albums', action: 'indexdate2'}, {method: :get} %>
 		    </div>
+
 			<div class="album-refine">
-			<%= button_to "すべてのアルバム表示", {controller: 'albums', action: 'index'}, {method: :get} %>
+				<%= button_to "すべてのアルバム表示", {controller: 'albums', action: 'index'}, {method: :get} %>
 			</div>
-</div>
+	</div>
 <!--// 折り畳まれ部分 -->
-		<div class="album-contair clearfix">
-			<h2 class="album-order"><%= @album_place %></h2>
-			<% @albums.each do |album| %>
-			<div class="album-box">
-				<div class ="album-box-title">
-					<%=link_to album.title, album_path(album) %></div>
-					<div class="album-box-date"><i class="fa fa-clock-o" aria-hidden="true"></i>
-						<%= album.date.strftime("%Y/%m/%d") %>
-					</div>
-					<div class="album-box-place">
- 					  撮影場所:<%= album.place.truncate(7) %>
-					</div>
-					<div class="album-box-img">
-						<% @photos.where(album_id: album).shuffle.first(1).each do |photo| %>
-						<%= attachment_image_tag photo, :image, :fill, 240, 180 %>
-						<%  end %>
-					</div>
+
+	<h2 class="album-order"><%= @album_place %></h2>
+	<% @albums.each do |album| %>
+		<div class="album-box">
+			<div class ="album-box-title">
+				<%=link_to album.title, album_path(album) %>
 			</div>
-		<% end %>
+			<div class="album-box-date"><i class="fa fa-clock-o" aria-hidden="true"></i>
+				<%= album.date.strftime("%Y/%m/%d") %>
+			</div>
+			<div class="album-box-place">
+ 			  撮影場所:<%= album.place.truncate(7) %>
+			</div>
+			<div class="album-box-img">
+				<% @photos.where(album_id: album).shuffle.first(1).each do |photo| %>
+					<%= attachment_image_tag photo, :image, :fill, 240, 180 %>
+				<%  end %>
+			</div>
 		</div>
-		</section>
+	<% end %>
 	</section>
-	</main>
+	</section>
+</main>

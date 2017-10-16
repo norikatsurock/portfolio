@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get "/admin/albums/:id/photos" => "photos#new", as: "admin_photos"
   post "admin/albums/:id/photos" => "photos#create", as: "admin_photos_create"
   get "admin/albums/:id/photos/edit" => "photos#edit", as: "edit_photos"
-  delete "admin/albums/:album_id/edit/:id" => "photos#destroy", as: "admin_photos_destroy"
+  delete "admin/albums/:album_id/edit" => "photos#destroy", as: "admin_photos_destroy"
   get "/blogs/category/:name" => "blogs#category", as: "category_blog"
   get "/albums/index/place" => "albums#indexplace", as: "albums_place"
   get "/albums/index/place2" => "albums#indexplace2", as: "albums_place2"

@@ -1,19 +1,22 @@
-<h1>アルバム用のページ</h1>
+<h2 style="color: grey;">【アルバム編集ページ】</h2>
+<section class="admin-contair clearfix">
+<br>
+<h3>■アルバムの新規作成</h3>
 <%= form_for(@album) do |f| %>
-	<h4>アルバム名</h4>
+	<p>アルバム名</p>
 	<%= f.text_field :title, placeholder: "例）第61回浦和祭り"  %>
-	<h4>アルバムの作成日</h4>
+	<p>撮影日時</p>
 	<%= f.text_field :date, placeholder: "例）2017/01/01" %>
-	<h4>撮影場所</h4>
+	<p>撮影場所</p>
 	<%= f.text_area :place, placeholder: "例）浦和"  %>
-	<h4>登録する写真</h4>
+	<p>アルバムへ登録する写真(複数写真の選択可)</p>
 	<%= f.attachment_field :photos_images, multiple: true %>
-
-
-	<%= f.submit "投稿" %>
+	<br>
+	<br>
+	<%= f.submit "新規作成する", "data-confirm" => "アルバムを新規作成します" %>
 <% end %>
 <br>
 <br>
-<br>
-<p><%= link_to "Topページへ", blogs_path %></p>
-<p><%= link_to "adminページへ", admin_path %></p>
+<p><%= link_to "Topページへ", blogs_path, :style => "color: grey;" %></p>
+<p><%= link_to "管理用ページTopへ", admin_path, :style => "color: grey;"  %></p>
+</section>

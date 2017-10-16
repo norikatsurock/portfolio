@@ -1,10 +1,8 @@
-
-
 class AlbumsController < ApplicationController
 	before_action :set_album, only:[:index, :indexdate,:indexdate2, :indexplace, :indexplace2]
 
 	def index
-		@albums = Album.order('date desc').page(params[:page]).per(12)
+		@albums = Album.order('date desc').page(params[:page]).per(20)
 	end
 
 	def indexdate
@@ -48,7 +46,7 @@ class AlbumsController < ApplicationController
 	def update
 		@album = Album.find(params[:id])
 		@album.update(album_params)
-		redirect_to admin_albums_path
+		redirect_to edit_album_path(params[:id])
 	end
 
 

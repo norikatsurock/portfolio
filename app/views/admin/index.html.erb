@@ -1,18 +1,13 @@
-<h1>管理用ページ</h1>
-<br>
-<br>
-<div class="admin_page">
-<h2><%= link_to "ブログのページ", admin_blogs_path %></h2>
-<br>
-<h2><%= link_to "カテゴリのページ", categories_path %></h2>
-<br>
-<h2><%= link_to "お知らせの追加", topics_path %></h2>
-<br>
-<h2><%= link_to "アルバムのページ", admin_albums_path %></h2>
-<br>
-
+<h1 style="color: grey;">【管理用ページ】</h1>
+<div class="admin-contair">
+<ol class="admin-contair-list">
+	<li class="admin-list"><%= link_to "ブログ編集ページ", admin_blogs_path %></li>
+	<li class="admin-list"><%= link_to "ブログカテゴリ編集ページ", categories_path %></li>
+	<li class="admin-list"><%= link_to "お知らせの追加", topics_path %></li>
+	<li class="admin-list"><%= link_to "アルバム編集ページ", admin_albums_path %></li>
+</ol>
 <br>
 <br>
 <p><%= link_to "Topページへ", blogs_path %></p>
-<p><%= link_to "adminページへ", admin_path %></p>
+<p><%= link_to "管理用ページTopへ", admin_path %></p>
 </div>

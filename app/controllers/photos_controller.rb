@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
  		@photo = Photo.new(photo_params)
  		@photo.album_id = params[:id]
 		@photo.save
-    	redirect_to admin_albums_path
+    	redirect_to edit_album_path(params[:id])
 	end
 
 	def edit
@@ -30,9 +30,8 @@ class PhotosController < ApplicationController
 	end
 
 	def destroy
-		@photo = Photo.find(params[:id])
-		@photo.destroy
-		redirect_to admin_albums_path
+		Photo.destroy(params[:photos][:id])
+    	redirect_to edit_album_path(params[:album_id])
 	end
 
 

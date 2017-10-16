@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 	def index
 		@topic = Topic.new
-		@topics = Topic.all
+		@topics = Topic.page(params[:page]).per(5)
 	end
 
 	def create
@@ -13,7 +13,7 @@ class TopicsController < ApplicationController
 
 	 def edit
 		@topic = Topic.find(params[:id])
-		@topics = Topic.all
+		@topics = Topic.page(params[:page]).per(5)
   	end
 
 	 def update

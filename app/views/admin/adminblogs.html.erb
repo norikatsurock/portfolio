@@ -1,16 +1,18 @@
-<section id="admin_blog_headline">
-	<h1>ブログ一覧</h1>
-	<p><%= link_to "→新規投稿←", new_blog_path %></p>
-	<p><%= link_to "→管理者ページへ戻る←", admin_path %></p>
+<section id="admin-headline">
+	<h1>【ブログの編集・削除のページ】</h1>
+	<p class="admin-headline-link"><%= link_to "→ブログの新規投稿←", new_blog_path %></p>
+	<p class="admin-headline-link"><%= link_to "→管理用ページTopへ←", admin_path %></p>
+	<br>
 </section>
 
 <% @blogs.each do |blog| %>
-	<div class="admin_blog clearfix">
-		<div class="admin_blog_box">
-			<p class="admin_blog_date">投稿日時｜<%= blog.created_at %></p>
-			<p class="admin_blog_title">タイトル｜<%= blog.title %></p>
-			<p class="admin_blog_category">カテゴリ｜<%= blog.category.name %></p>
-			<div class="admin_blog_img">
+	<div class="admin-blog clearfix">
+		<div class="admin-blog-box">
+			<p class="admin-blog-date">投稿日時｜<%= blog.created_at %></p>
+			<p class="admin-blog-date">編集日時｜<%= blog.updated_at %></p>
+			<p class="admin-blog-title">タイトル｜<%= blog.title %></p>
+			<p class="admin-blog-category">カテゴリ｜<%= blog.category.name %></p>
+			<div class="admin-blog-img">
 				<% if  blog.image_id.present? %>
                     <%= attachment_image_tag blog, :image, :fill, 50, 50, format: 'jpg' %>
                 <% else %>
@@ -18,8 +20,9 @@
                 <% end %>
              </div>
 		</div>
-			<div class="admin_blog_link">
+			<div class="admin-blog-link">
 				<%= link_to "記事の編集", edit_blog_path(blog)%><br>
 				<%= link_to "記事の削除", blog_path(blog), method: :delete, "data-confirm" => "本当に削除しますか？"%></div>
 	</div>
 <% end %>
+<div class="paginate" ><%= paginate @blogs %></div>

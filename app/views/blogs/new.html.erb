@@ -1,17 +1,22 @@
-<h1>投稿用のページ</h1>
+<h2 style="color: grey;">【ブログ編集ページ】</h2>
+<section class="admin-contair clearfix">
+<br>
+<h3>■ブログ記事の新規投稿</h3>
 <%= form_for(@blog) do |f| %>
-	<h4>タイトル</h4>
+	<p>タイトル</p>
 	<%= f.text_field :title %>
-	<h4>カテゴリ</h4>
+	<p>カテゴリを選択</p>
 	<%= f.collection_select :category_id, Category.all, :id, :name %>
-	<h4>本文</h4>
+	<p>本文</p>
 	<%= f.text_area :body, size: "100×500" %>
-	<h4>画像</h4>
+	<p>画像の追加</p>
 	<%= f.attachment_field :image %>
-
-	<%= f.submit "投稿" %>
+	<br>
+	<br>
+	<%= f.submit "新規投稿する", "data-confirm" => "新規ブログ記事を投稿します" %>
 <% end %>
-
-<p><%= link_to "Topページへ", blogs_path %></p>
-<p><%= link_to "adminページへ", admin_path %></p>
-
+<br>
+<br>
+<p><%= link_to "Topページへ", blogs_path, :style => "color: grey;" %></p>
+<p><%= link_to "管理用ページTopへ", admin_path, :style => "color: grey;"  %></p>
+</section>

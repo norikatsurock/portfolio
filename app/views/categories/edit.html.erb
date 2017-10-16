@@ -1,21 +1,24 @@
-<h1>カテゴリ編集</h1>
+<h2 style="color: grey;">【ブログカテゴリ編集ページ】</h2>
+<section class="admin-contair">
+<h3>■カテゴリ名の編集</h3>
+　既存のカテゴリ名：<%= @category.name %>
 <%= form_for(@category) do |f| %>
-	<h3>既存のカテゴリ名：<%= @category.name %></h3>
-	<h3>新しいカテゴリ名：<%= f.text_field :name %>
-	<%= f.submit "上書き" %></h3>
+　新しいカテゴリ名：<%= f.text_field :name %>
+<%= f.submit "カテゴリ名を更新" %>	<%= button_to "キャンセル", {controller: 'topics', action: 'index'}, {method: :get} %>
 <% end %>
 <br>
 <br>
-<h2>既存のカテゴリ一覧</h2>
-
+<h3>■既存のカテゴリ一覧</h3>
 <% @categories.each do |category| %>
-<ul>
-	<li>
-		<%= category.name %>
-	</li>
-</ul>	
-
+	<ul>
+		<li class="admin-category-list">
+			<%= category.name %>
+		</li>
+	</ul>
 <% end %>
-
+<%= alert %>
+<br>
+<br>
 <p><%= link_to "Topページへ", blogs_path %></p>
-<p><%= link_to "adminページへ", admin_path %></p>
+<p><%= link_to "管理用ページTopへ", admin_path %></p>
+</section>

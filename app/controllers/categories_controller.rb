@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
 			@category.destroy
 			redirect_to categories_path
 		else
-			flash[:notice] = "※選択したカテゴリはブログ記事に使用されているため削除できませんでした"
+			flash[:alert] = "※選択したカテゴリはブログ記事に使用されているため削除できませんでした"
 			redirect_to categories_path
 		end
 	end

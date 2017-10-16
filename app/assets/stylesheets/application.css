@@ -43,9 +43,6 @@ i{
 	clear: both;
 }
 
-.admin_page a{
-	color: grey;
-}
 
 header {
 	width: 100%;
@@ -313,6 +310,7 @@ main{
 	background-color: rgba(0,0,0,0.4);
 	margin: 0 auto;
 	text-align: center;
+	padding-bottom: 20px;
 }
 .album-headline{
 	text-align: center;
@@ -343,7 +341,7 @@ main{
 
 .album-order{
 	width: 80%;
-	margin: 20px 0 10px 10px;
+	margin: 30px 0 5px 10px;
 	padding-left: 10px;
 	text-align: left;
 	float: left;
@@ -403,31 +401,87 @@ footer{
 	color: white;
 }
 
-
-.admin_blog{
-    width: 572px;
-    padding: 15px 30px;
-    border-top: 1px solid grey;
+.admin-contair{
+	padding-left: 10px;
+	color: grey;
 }
-.admin_blog_box{
-    width: 300px;
-    float: left;
-}
-#admin_blog_headline a{
+.admin-contair a{
 	color: grey;
 }
 
-.admin_blog_title, .admin_blog_category, .admin_blog_img, .admin_blog_date{
+.admin-contair-list{
+	margin-left: 30px;
+}
+.admin-list{
+	margin: 10px 0;
+	font-size: 21px;
+	text-decoration: underline;
+	color: grey;
+	list-style-type: lower-roman;
+}
+
+
+.admin-blog{
+    width: 572px;
+    padding: 15px 30px;
+    border-top: 1px solid grey;
+    color: grey;
+}
+.admin-blog-box{
+    width: 300px;
+    float: left;
+}
+#admin-headline{
+	color: grey;
+}
+
+.admin-headline-link{
+	padding-left: 20px;
+}
+.admin-headline-link a{
+	color: grey;
+}
+
+.admin-blog-title, .admin-blog-category, .admin-blog-img, .admin-blog-date{
     margin: 0 auto;
 }
-.admin_blog_link{
+.admin-blog-link{
     right: 20px;
     text-decoration: underline;
     padding: 30px;
     float:left;
 }
 
-.admin_blog_link a{
+.admin-blog-link a{
 	color: grey;
 }
+
+
+.admin-category-list, .admin-topic-list{
+	margin-left: 20px;
+}
+
+.admin-category-list a, .admin-topic-list a{
+	color: grey;
+}
+
+.admin-album-contair{
+	color: grey;
+	padding-left: 10px;
+}
+
+.admin-album-photo{
+	position: relative;
+	float: left;
+	padding: 10px;
+}
+.admin-album-checkbox{
+	position: absolute;
+	top: 3px;
+	left: 11px;
+}
+
+
+
+
 

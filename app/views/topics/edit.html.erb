@@ -1,21 +1,26 @@
-<h1>お知らせ編集</h1>
+<h2 style="color: grey;">【お知らせ編集ページ】</h2>
+<section class="admin-contair">
+<h3>■お知らせの編集</h3>
+　編集前のお知らせ：<%= @topic.body %>
 <%= form_for(@topic) do |f| %>
-	<h3>既存のカテゴリ名：<%= @topic.body %></h3>
-	<h3>新しいカテゴリ名：<%= f.text_field :body %>
-	<%= f.submit "上書き" %></h3>
+　編集後のお知らせ：<%= f.text_field :body %>
+	<%= f.submit "お知らせ内容を更新" %>　<%= button_to "キャンセル", {controller: 'categories', action: 'index'}, {method: :get} %>
 <% end %>
 <br>
 <br>
-<h2>お知らせ一覧</h2>
-
+<h3>■お知らせ一覧</h3>
 <% @topics.each do |topic| %>
-<ul>
-	<li>
-		<%= topic.body %>
-	</li>
-</ul>	
-
+	<ul>
+		<li class="admin-topic-list">
+			<%= topic.created_at %><br>
+			<%= topic.body %>
+		</li>
+		<br>
+	</ul>
 <% end %>
-
-<p><%= link_to "mysiteへ", blogs_path, :style => 'color:grey;' %></p>
-<p><%= link_to "adminページへ", admin_path, :style => 'color:grey;' %></p>
+<div class="paginate" style="text-align:left; padding-left:10px;"><%= paginate @topics %></div>
+<br>
+<br>
+<p><%= link_to "Topページへ", blogs_path %></p>
+<p><%= link_to "管理用ページTopへ", admin_path %></p>
+</section>

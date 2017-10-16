@@ -1,23 +1,25 @@
-<h1>お知らせ追加のページ</h1>
+<h2 style="color: grey;">【お知らせ編集ページ】</h2>
+<section class="admin-contair">
+<h3>■お知らせの追加</h3>
 <%= form_for(@topic) do |f| %>
-	<h3>お知らせの内容：<%= f.text_area :body %>
-	<%= f.submit "お知らせ追加" %></h3>
+　お知らせの内容：<%= f.text_field :body %>
+<%= f.submit "お知らせを追加" %>
 <% end %>
 <br>
 <br>
-<h2>お知らせ一覧</h2>
-
+<h3>■お知らせ一覧</h3>
 <% @topics.each do |topic| %>
-<ul>
-	<li>
-		○<%= topic.body %>　<%= link_to "[削除]", topic_path(topic), method: :delete, "data-confirm" => "選択したおしらせを削除します", :style => 'color:grey;' %>   <%= link_to "[編集]", edit_topic_path(topic), :style => 'color:grey;' %>
-	</li>
-</ul>	
-
+	<ul>
+		<li class="admin-topic-list">
+		<%= topic.created_at %><br>
+		<%= topic.body %>　<%= link_to "[編集]", edit_topic_path(topic) %>　<%= link_to "[削除]", topic_path(topic), method: :delete, "data-confirm" => "選択したおしらせを削除します" %>
+		</li>
+		<br>
+	</ul>
 <% end %>
+<div class="paginate" style="text-align:left; padding-left:10px;"><%= paginate @topics %></div>
 <br>
 <br>
-<br>
-<p><%= link_to "mysiteへ", blogs_path, :style => 'color:grey;' %></p>
-<p><%= link_to "adminページへ", admin_path, :style => 'color:grey;' %></p>
-
+<p><%= link_to "Topページへ", blogs_path %></p>
+<p><%= link_to "管理用ページTopへ", admin_path %></p>
+</section>

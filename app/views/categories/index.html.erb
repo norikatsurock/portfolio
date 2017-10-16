@@ -1,22 +1,23 @@
-<h1>カテゴリ追加のページ</h1>
-<%= form_for(@category) do |f| %>
-	<h3>カテゴリ名：<%= f.text_field :name %>
-	<%= f.submit "カテゴリの追加" %></h3>
-<% end %>
+<h2 style="color: grey;">【ブログカテゴリ編集ページ】</h2>
+<section class="admin-contair">
 <br>
-<br>
-<h2>既存のカテゴリ一覧</h2>
+<h3>■既存のカテゴリ一覧</h3>
 <% @categories.each do |category| %>
-<ul>
-	<li>
-		○<%= category.name %>  <%= link_to "[編集]", edit_category_path(category), :style => 'color:grey;' %>  <%= link_to "[削除]", category_path(category),method: :delete,"data-confirm"=>"本当に削除しますか？", :style => 'color:grey;'  %>
-	</li>
-</ul>
+	<ul>
+		<li class="admin-category-list">
+			<%= category.name %>  <%= link_to "[編集]", edit_category_path(category) %>  <%= link_to "[削除]", category_path(category),method: :delete,"data-confirm"=>"本当に削除しますか？" %>
+		</li>
+	</ul>
+<% end %>
+<%= alert %>
+<br>
+<br>
+<h3>■カテゴリの追加</h3>
+<%= form_for(@category) do |f| %>
+　追加するカテゴリ名：<%= f.text_field :name %>
+<%= f.submit "カテゴリの追加" %>
 <% end %>
 <br>
-<%= notice %>
-<br>
-<br>
-<p><%= link_to "Topページへ", blogs_path, :style => 'color:grey;'  %></p>
-<p><%= link_to "adminページへ", admin_path, :style => 'color:grey;'  %></p>
-
+<p><%= link_to "Topページへ", blogs_path %></p>
+<p><%= link_to "管理用ページTopへ", admin_path %></p>
+</section>

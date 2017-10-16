@@ -1,18 +1,20 @@
-
-<h3>■アルバムの情報を編集</h3>
+<h2 style="color: grey;">【アルバム編集ページ】</h2>
+<section class="admin-contair clearfix">
+<br>
+<h3>■アルバム情報の編集</h3>
 <%= form_for(@album) do |f| %>
-	<h4>タイトル</h4>
+	<p>アルバム名</p>
 	<%= f.text_field :title %>
-	<h4>時間</h4>
+	<p>撮影日時</p>
 	<%= f.text_field :date %>
-	<h4>場所</h4>
+	<p>撮影場所</p>
 	<%= f.text_area :place %>
 　　<%= f.submit 'アルバム情報の更新' %>
 <% end %>
 <br>
 <br>
 
-	<h3>■アルバムへ写真を追加する</h3>
+	<h3>■アルバムへ写真を追加</h3>
 <%= form_for @photo, url: admin_photos_create_path, method: :post do |f| %>
 	<%= f.attachment_field :image%>
 	<%= f.submit "選択した写真を追加" %>
@@ -20,13 +22,24 @@
 
 <br>
 <br>
-	<h3>■アルバムの写真を削除する</h3>
-<% @photos.each do |photo| %>
-	<%= attachment_image_tag(photo, :image, :fill, 100, 100, format: "JPG") %>
-	<%= link_to "写真の削除", admin_photos_destroy_path(album_id: photo.album_id, id: photo), method: :delete, :style => 'color:grey;' %>
+	<h3>■アルバムの写真を削除</h3>
+<div class="clearfix">
+<%= form_for @photo, url: admin_photos_destroy_path(@album), method: :delete do |f| %>
+<%= f.submit "チェックした写真を削除する", "data-confirm" => "アルバムから写真を削除します" %>
+<br>
+<br>
+<% @photos.each do |photo|%>
+	<div class="admin-album-photo"><%= attachment_image_tag(photo, :image, :fill, 100, 100, format: "JPG") %>
+		<div class="admin-album-checkbox"><%= check_box_tag 'photos[id][]',photo.id, checked = false, {multiple: true} %></div>
+	</div>
 <% end %>
-
-
+<% end %>
+</div>
+<br>
+<br>
+<p><%= link_to "Topページへ", blogs_path, :style => "color: grey;" %></p>
+<p><%= link_to "管理用ページTopへ", admin_path, :style => "color: grey;"  %></p>
+</section>
 
 
 
