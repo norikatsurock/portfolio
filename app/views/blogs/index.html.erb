@@ -13,7 +13,7 @@
 	<!-- ここからSlidebar -->	
 		<div class="sidebar">
 			<section class ="news">
-				<h2 class="news-headline">お知らせ</h2>
+				<h2 class="news-headline">Topics</h2>
 				<div class="news-content">
 				<% @topics.first(5).each do |topic| %>
 					<p class="news-content-text">
@@ -25,7 +25,7 @@
 			</section>
 			<div class="slidebar-blank"></div>
 			<section class="category">
-				<h2 class="category-headline">カテゴリー</h2>
+				<h2 class="category-headline">Category</h2>
 				<div class="category-content">
 					<% @categories.each do |category| %>
 					 <p class="category-content-text"><%=link_to category.name, category_blog_path(category.name) %>(<%= @category_count.where(category_id: category.id).count %>)

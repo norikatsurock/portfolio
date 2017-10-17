@@ -14,6 +14,13 @@
  *= require_self
  */
 
+.active>a{
+	border-radius: 3px;
+	background: #f7f7f7;
+	color: grey;
+	padding: 2px;
+	font-size: 17px;
+}
 
 *{
 	margin: 0;
@@ -41,6 +48,10 @@ i{
 	content: "";
 	display: block;
 	clear: both;
+}
+
+header, .nav-list-item, .blog-headline, .news-headline, .category-headline{
+	font-family: 'Ubuntu', sans-serif, 'Meiryo UI';
 }
 
 
