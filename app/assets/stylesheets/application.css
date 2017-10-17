@@ -417,21 +417,23 @@ footer{
 	font-size: 21px;
 	text-decoration: underline;
 	color: grey;
-	list-style-type: lower-roman;
 }
 
 
 .admin-blog{
     width: 572px;
     padding: 15px 30px;
-    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
     color: grey;
 }
+
 .admin-blog-box{
     width: 300px;
     float: left;
 }
 #admin-headline{
+	width: 572px;
+	border-bottom: 1px solid grey;
 	color: grey;
 }
 
@@ -454,6 +456,13 @@ footer{
 
 .admin-blog-link a{
 	color: grey;
+}
+
+.admin-paginate{
+	width: 572px;
+	padding: 20px 0;
+	text-align: center;
+	float: left;
 }
 
 

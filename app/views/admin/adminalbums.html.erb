@@ -1,3 +1,5 @@
+
+<section class="admin-contair clearfix">
 <section id="admin-headline">
 	<h1>【アルバムの編集・削除のページ】</h1>
 	<p class="admin-headline-link"><%= link_to "→アルバムの新規追加←", new_album_path %></p>
@@ -18,4 +20,5 @@
 			</div>
 	</div>
 <% end %>
-<div class="paginate" ><%= paginate @albums %></div>
+<div class="admin-paginate" ><%= paginate @albums %></div>
+</section>

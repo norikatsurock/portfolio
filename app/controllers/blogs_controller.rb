@@ -17,7 +17,7 @@ class BlogsController < ApplicationController
 
   def show
     @category_count = Blog.all
-    @blogs = Blog.all
+    @blogs = Blog.all.order("created_at desc")
     @blog = Blog.find(params[:id])
     @categories = Category.all
     @blogcomment = Blogcomment.new

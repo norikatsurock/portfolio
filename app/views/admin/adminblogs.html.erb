@@ -1,3 +1,5 @@
+
+<section class="admin-contair clearfix">
 <section id="admin-headline">
 	<h1>【ブログの編集・削除のページ】</h1>
 	<p class="admin-headline-link"><%= link_to "→ブログの新規投稿←", new_blog_path %></p>
@@ -25,4 +27,5 @@
 				<%= link_to "記事の削除", blog_path(blog), method: :delete, "data-confirm" => "本当に削除しますか？"%></div>
 	</div>
 <% end %>
-<div class="paginate" ><%= paginate @blogs %></div>
+<div class="admin-paginate" ><%= paginate @blogs %></div>
+</section>

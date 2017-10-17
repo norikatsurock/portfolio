@@ -11,7 +11,7 @@
 <% @topics.each do |topic| %>
 	<ul>
 		<li class="admin-topic-list">
-		<%= topic.created_at %><br>
+		<%= topic.created_at.strftime("%Y/%m/%d %H:%M") %><br>
 		<%= topic.body %>　<%= link_to "[編集]", edit_topic_path(topic) %>　<%= link_to "[削除]", topic_path(topic), method: :delete, "data-confirm" => "選択したおしらせを削除します" %>
 		</li>
 		<br>
