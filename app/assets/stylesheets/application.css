@@ -26,6 +26,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Ubuntu', sans-serif, 'Meiryo UI';
 }
 
 a {
@@ -50,7 +51,7 @@ i{
 	clear: both;
 }
 
-header, .nav-list-item, .blog-headline, .news-headline, .category-headline{
+header, .nav-list-item, .blog-headline, .news-headline, .category-headline, .album-headline{
 	font-family: 'Ubuntu', sans-serif, 'Meiryo UI';
 }
 
