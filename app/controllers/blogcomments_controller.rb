@@ -4,6 +4,9 @@ class BlogcommentsController < ApplicationController
 def create
   @blog = Blog.find(params[:blog_id])
   @blogcomment = @blog.blogcomments.new(blogcomment_params)
+  if @blogcomment.from.empty?
+  	@blogcomment.from = "名無し"
+  end
   @blogcomment.user_id = current_user.id
   @blogcomment.save
   redirect_to blog_path(@blog)

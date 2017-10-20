@@ -41,7 +41,7 @@
 		<section class="blog-contair clearfix">
 			<h2 class="blog-headline">Blogs</h2>
 			<% @blogs.order("created_at desc").each do |blog| %>
-				<div class="blog-box clearfix">
+				<div class="blog-box">
 				<div class="blog-box-img">
 				 　<% if  blog.image_id.present? %>
                    	 <%= link_to blog_path(blog) do %>

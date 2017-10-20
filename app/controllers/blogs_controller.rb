@@ -21,6 +21,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @categories = Category.all
     @blogcomment = Blogcomment.new
+    @blogcomments = Blogcomment.where(blog_id: params[:id]).order("created_at desc").page(params[:page]).per(10)
     rank = Favorite.group(:blog_id).order('count(blog_id) desc').limit(5).pluck(:blog_id)
     @rank_top5 = rank.map{|id| Blog.find(id)}
   end
