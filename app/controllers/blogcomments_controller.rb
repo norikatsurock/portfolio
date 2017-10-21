@@ -4,7 +4,9 @@ class BlogcommentsController < ApplicationController
 def create
   @blog = Blog.find(params[:blog_id])
   @blogcomment = @blog.blogcomments.new(blogcomment_params)
-  if @blogcomment.from.empty?
+  if @blogcomment.comment.empty?
+    flash[:notice] = '※コメントを入力してください'
+  elsif @blogcomment.from.empty?
   	@blogcomment.from = "名無し"
   end
   @blogcomment.user_id = current_user.id

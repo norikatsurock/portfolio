@@ -91,27 +91,28 @@
 							  表示名　：<%= f.text_field :from, placeholder:'表示名を入力' %><br>
 							 コメント：<%= f.text_area :comment, placeholder:"コメントを入力", size:"70×500" %>
 								<%= f.submit "コメントを送信します" %>
+								<p style='color: red;'><%= notice %></p>
 						<% else %>
 							<%= link_to "　→コメントするにはログインしてください←", new_user_session_path, :style => "color: blue;" %>
 						<% end %>
 					<% end %>
 					<br>
+					<div class="comment-foot"></div>
 					<% @blogcomments.each do |comment| %>
 						<% if user_signed_in? && current_user.admin? %>
 						<div class="comment-text">
 							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %>
-							<%= link_to "  [コメントを削除]",  blog_blogcomment_path(blog_id: @blog, id: comment),method: :delete, "data-confirm" => "コメントを削除します", :style => "color:blue;" %><br>
+							<%= link_to "  [コメントを削除]",  blog_blogcomment_path(blog_id: @blog, id: comment),method: :delete, "data-confirm" => "コメントを削除します", :style => "color:blue;" %>
+							<p class="comment-from">
 							■<%= comment.from %>さん
+							</p>
 							<%= simple_format(comment.comment) %>
 						<div class="comment-foot"></div>
 						</div>
 						<% elsif user_signed_in? && comment.user_id == current_user.id %>
 						<div class="comment-text">
-						<div class="comment-head"></div>
-							<p class="comment-date">
 								<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %>
 							<%= link_to "  [コメントを削除]",  blog_blogcomment_path(blog_id: @blog, id: comment),method: :delete, "data-confirm" => "コメントを削除します", :style => "color:blue;" %>
-							</p>
 							<p class="comment-from">
 							■<%= comment.from %>さん
 							</p>
@@ -120,14 +121,16 @@
 						</div>
 						<% else %>
 						<div class="comment-text">
-							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %><br><br>
+							<%= comment.created_at.try(:strftime, '%Y/%m/%d %H:%M') %>
+							<p class="comment-from">
 							■<%= comment.from %>さん
+							</p>
 							<%= simple_format(comment.comment) %>
 						<div class="comment-foot"></div>
 						</div>
 						<% end %>
 				<% end %>
-				<div class='paginate'><%= paginate @blogcomments %></div>
+				<div class='comment-paginate' style='color:black;'><%= paginate @blogcomments %></div>
 				</div>
 	<!-- ここまでComment -->
 
