@@ -32,8 +32,20 @@ class BlogsController < ApplicationController
 
   def create
   	@blog = Blog.new(blog_params)
-    @blog.save
-    redirect_to blogs_path
+    if @blog.title.empty? && @blog.body.empty?
+      flash[:alert1] = '※値が入力されていません'
+      flash[:alert2] = '※値が入力されていません'
+      redirect_to new_blog_path
+    elsif @blog.title.empty?
+      flash[:alert1] = '※値が入力されていません'
+      redirect_to new_blog_path
+    elsif @blog.body.empty?
+      flash[:alert2] = '※値が入力されていません'
+      redirect_to new_blog_path
+    else
+      @blog.save
+      redirect_to blogs_path
+    end
   end
 
   def edit

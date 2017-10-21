@@ -6,7 +6,7 @@
 	<br>
 	<%= form_for (@photo) do |f| %>
 		<h4>写真の選択</h4>
-		<%= f.attachment_field :image%>
+		<%= f.attachment_field :image, multiple: true %>
 		<%= f.submit "投稿" %>
 		<br>
 		<br>

@@ -5,12 +5,19 @@
 <%= form_for(@blog) do |f| %>
 	<p>タイトル</p>
 	<%= f.text_field :title %>
+	<p style='color: red;'><%= flash[:alert1] %></p>
+	<br>
 	<p>カテゴリを選択</p>
 	<%= f.collection_select :category_id, Category.all, :id, :name %>
+	<br>
+	<br>
 	<p>本文</p>
 	<%= f.text_area :body, size: "100×500" %>
+	<p style='color: red;'><%= flash[:alert2] %></p>
+	<br>
 	<p>画像の追加</p>
 	<%= f.attachment_field :image %>
+	<br>
 	<br>
 	<br>
 	<%= f.submit "新規投稿する", "data-confirm" => "新規ブログ記事を投稿します" %>

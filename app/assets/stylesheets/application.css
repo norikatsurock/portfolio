@@ -251,7 +251,6 @@ main{
 }
 
 .blog-item-img{
-/*	height: 500px;*/
 	text-align: center;
 
 }
@@ -266,12 +265,12 @@ main{
 	padding: 20px 10px 0 10px;
 	background-color: rgba(255,255,255,0.6);
 	float: left;
+	color: black;
+}
+.comment a{
+	color: black;
 }
 
-.comment-form{
-	color: white;
-	text-align: left;
-}
 
 .comment-headline{
 	font-size: 20px;

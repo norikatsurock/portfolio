@@ -37,7 +37,7 @@
 				</section>
 			<div class="slidebar-blank"></div>
 				<section class="category">
-					<h2 class="category-headline">カテゴリー</h2>
+					<h2 class="category-headline">Category</h2>
 					<div class="category-content">
 						<% @categories.each do |category| %>
 						 <p class="category-content-text"><%=link_to category.name, category_blog_path(category.name) %>(<%= @category_count.where(category_id: category.id).count %>)
@@ -85,19 +85,23 @@
 
 	<!-- ここからComment -->
 				<div class="comment">
+
+			<!-- Comment入力フォーム -->
 					<p class="comment-headline">【この記事へのコメント】</p>
 					<%= form_for ([@blog, @blog.blogcomments.build]) do |f| %>
 						<% if user_signed_in? %>
 							  表示名　：<%= f.text_field :from, placeholder:'表示名を入力' %><br>
 							 コメント：<%= f.text_area :comment, placeholder:"コメントを入力", size:"70×500" %>
 								<%= f.submit "コメントを送信します" %>
-								<p style='color: red;'><%= notice %></p>
+								<p style='color: red;'><%= flash[:alert] %></p>
 						<% else %>
 							<%= link_to "　→コメントするにはログインしてください←", new_user_session_path, :style => "color: blue;" %>
 						<% end %>
 					<% end %>
-					<br>
 					<div class="comment-foot"></div>
+			<!-- Comment入力フォーム -->
+
+			<!-- Comment表示 -->
 					<% @blogcomments.each do |comment| %>
 						<% if user_signed_in? && current_user.admin? %>
 						<div class="comment-text">
@@ -130,7 +134,9 @@
 						</div>
 						<% end %>
 				<% end %>
-				<div class='comment-paginate' style='color:black;'><%= paginate @blogcomments %></div>
+				<div class='paginate'><%= paginate @blogcomments %></div>
+			<!-- Comment表示 -->
+
 				</div>
 	<!-- ここまでComment -->
 

@@ -16,7 +16,7 @@
 
 	<h3>■アルバムへ写真を追加</h3>
 <%= form_for @photo, url: admin_photos_create_path, method: :post do |f| %>
-	<%= f.attachment_field :image%>
+	<%= f.attachment_field :image %>
 	<%= f.submit "選択した写真を追加" %>
 <% end %>
 
